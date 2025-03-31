@@ -16,7 +16,6 @@ import com.example.applicationmantenimientovehicular.ui.theme.ApplicationManteni
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        enableEdgeToEdge()
         setContent {
             ApplicationMantenimientoVehicularTheme {
                 Scaffold(modifier = Modifier.fillMaxSize()) { innerPadding ->
@@ -42,6 +41,6 @@ fun Greeting(name: String, modifier: Modifier = Modifier) {
 @Composable
 fun GreetingPreview() {
     ApplicationMantenimientoVehicularTheme {
-        Greeting("Bienvenido")
+        Greeting("Android")
     }
 }
