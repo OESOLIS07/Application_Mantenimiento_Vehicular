@@ -64,7 +64,41 @@ fun AreaDePruebas(
     viewModel: AceiteMotViewModel = hiltViewModel()
 )
 {
-    Text("Pantalla Principal")
+    Column (
+        modifier = Modifier
+            .fillMaxSize()
+            .padding()
+    )
+    {
+        Text("Pantalla Principal")
+        Button(
+            onClick = { },
+            modifier = Modifier
+                .padding(horizontal = 16.dp)
+                .fillMaxWidth()
+        ) {
+            Text("Guardar Kilometraje ")
+        }
+
+        Button(
+            onClick = { },
+            modifier = Modifier
+                .padding(horizontal = 16.dp)
+                .fillMaxWidth()
+        ) {
+            Text("Revisar estado del Vehículo")
+        }
+
+        Button(
+            onClick = { },
+            modifier = Modifier
+                .padding(horizontal = 16.dp)
+                .fillMaxWidth()
+        ) {
+            Text("Ingresar Componentes")
+        }
+    }
+
 }
 
 
