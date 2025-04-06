@@ -27,6 +27,7 @@ import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.FloatingActionButton
 import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextButton
@@ -64,13 +65,24 @@ fun AreaDePruebas(
     viewModel: AceiteMotViewModel = hiltViewModel()
 )
 {
+    var kilometraje by remember { mutableStateOf("") } // Estado para el kilometraje
+
     Column (
         modifier = Modifier
             .fillMaxSize()
-            .padding()
+            .padding(16.dp)
     )
     {
         Text("Pantalla Principal")
+        // Campo de texto para el kilometraje del vehiculo
+        OutlinedTextField(
+            value = kilometraje,
+            onValueChange = { kilometraje = it },
+            label = { Text("Ingrese el Kilometraje actual") },
+            modifier = Modifier.fillMaxWidth()
+        )
+        Text("Seleccione una opción:")
+        //Boton para guardar el kilometraje del vehiculo
         Button(
             onClick = { },
             modifier = Modifier
@@ -79,18 +91,24 @@ fun AreaDePruebas(
         ) {
             Text("Guardar Kilometraje ")
         }
-
+        // Boton para revisar el estado del vehiculo
         Button(
-            onClick = { },
+            onClick = {
+                // Navegar a la Pantalla de Estado del Vehículo
+                navController.navigate("pantallaEstadoDeVehiculo")
+            },
             modifier = Modifier
                 .padding(horizontal = 16.dp)
                 .fillMaxWidth()
         ) {
             Text("Revisar estado del Vehículo")
         }
-
+        //Boton para ingresar componentes vehiculares
         Button(
-            onClick = { },
+            onClick = {
+                // Navegar a la Pantalla de Ingreso de Componentes
+                navController.navigate("pantallaIngresoComponentes")
+            },
             modifier = Modifier
                 .padding(horizontal = 16.dp)
                 .fillMaxWidth()

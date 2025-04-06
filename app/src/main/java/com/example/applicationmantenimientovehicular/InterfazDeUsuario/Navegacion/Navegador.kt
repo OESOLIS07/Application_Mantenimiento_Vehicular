@@ -11,6 +11,8 @@ import androidx.navigation.compose.rememberNavController
 import androidx.navigation.navArgument
 import com.example.applicationmantenimientovehicular.InterfazDeUsuario.AreaDePruebas
 import com.example.applicationmantenimientovehicular.ViewModel.AceiteMotViewModel
+import com.example.applicationmantenimientovehicular.InterfazDeUsuario.IngresoDeComponentes
+import com.example.applicationmantenimientovehicular.InterfazDeUsuario.EstadoDeVehiculo
 import com.google.gson.Gson
 
 @Composable
@@ -21,10 +23,22 @@ fun Navegador(viewModelStoreOwner: ViewModelStoreOwner = LocalViewModelStoreOwne
         navController = navController,
         startDestination = "pantallaPrincipal"
     ) {
-        // Pantalla principal
+        // Pantalla Principal
         composable("pantallaPrincipal") {
             val viewModel: AceiteMotViewModel = hiltViewModel(viewModelStoreOwner)
             AreaDePruebas(navController = navController, viewModel)
+        }
+
+        // Pantalla Ingreso de Componentes
+        composable("pantallaIngresoComponentes") {
+            val viewModel: AceiteMotViewModel = hiltViewModel(viewModelStoreOwner)
+            IngresoDeComponentes(navController = navController, viewModel)
+        }
+
+        // Pantalla Estado del Vehiculo
+        composable("pantallaEstadoDeVehiculo") {
+            val viewModel: AceiteMotViewModel = hiltViewModel(viewModelStoreOwner)
+            EstadoDeVehiculo(navController = navController, viewModel)
         }
     }
 }
