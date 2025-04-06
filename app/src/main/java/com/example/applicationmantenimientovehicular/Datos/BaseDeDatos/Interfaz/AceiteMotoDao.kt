@@ -17,6 +17,12 @@ interface AceiteMotoDao
     @Update
     suspend fun update(aceiteMoto: AceiteMoto)
 
+    @Query("SELECT * FROM aceiteMoto")
+    fun getAllAceiteMoto(): LiveData<List<AceiteMoto>>
+
+    @Query("DELETE FROM aceiteMoto")
+    suspend fun deleteAllAceiteMoto()
+
     @Delete
     suspend fun delete(aceiteMoto: AceiteMoto)
 }

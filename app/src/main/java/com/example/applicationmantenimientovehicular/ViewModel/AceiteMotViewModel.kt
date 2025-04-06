@@ -9,11 +9,14 @@ import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
+
 @HiltViewModel
 class AceiteMotViewModel @Inject constructor(
     private val repository: AceiteMotoRepository
 ) : ViewModel()
 {
+    val allAceiteMoto: LiveData<List<AceiteMoto>> get() = repository.getAllAceiteMoto()
+
     fun insert(aceiteMoto: AceiteMoto) = viewModelScope.launch {
         repository.insert(aceiteMoto)
     }
@@ -25,5 +28,9 @@ class AceiteMotViewModel @Inject constructor(
         viewModelScope.launch {
             repository.delete(aceiteMoto)
         }
+    }
+
+    fun deleteAllAceiteMoto() = viewModelScope.launch {
+        repository.deleteAllAceiteMoto()
     }
 }

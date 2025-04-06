@@ -7,12 +7,20 @@ import javax.inject.Inject
 
 class AceiteMotoRepository @Inject constructor(private val aceiteMotoDao: AceiteMotoDao)
 {
+    fun getAllAceiteMoto(): LiveData<List<AceiteMoto>> {
+        return aceiteMotoDao.getAllAceiteMoto()
+    }
+
     suspend fun insert(aceiteMoto: AceiteMoto) {
         aceiteMotoDao.insert(aceiteMoto)
     }
 
     suspend fun update(aceiteMoto: AceiteMoto) {
         aceiteMotoDao.update(aceiteMoto)
+    }
+
+    suspend fun deleteAllAceiteMoto() {
+        aceiteMotoDao.deleteAllAceiteMoto()
     }
 
     suspend fun delete(aceiteMoto: AceiteMoto) {
