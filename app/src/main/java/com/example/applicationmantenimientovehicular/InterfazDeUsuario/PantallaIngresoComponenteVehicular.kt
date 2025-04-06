@@ -2,7 +2,9 @@ package com.example.applicationmantenimientovehicular.InterfazDeUsuario
 
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
+import androidx.compose.material3.Button
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
@@ -25,5 +27,17 @@ fun IngresoDeComponentes(
     )
     {
         Text("Pantalla Ingreso de Componentes")
+        //Boton para Guardar el nuevo Componente
+        Button(
+            onClick = {
+                // Navegar a la Pantalla de Detalles
+                navController.navigate("pantallaDetalles")
+            },
+            modifier = Modifier
+                .padding(horizontal = 16.dp)
+                .fillMaxWidth()
+        ) {
+            Text("Guardar")
+        }
     }
 }
