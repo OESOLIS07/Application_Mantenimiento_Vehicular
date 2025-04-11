@@ -9,6 +9,6 @@ data class AceiteMoto(
     @PrimaryKey(autoGenerate = true)
     val id: Long = 0,
     val nombre: String = "",
-    val durabilidad: Int = 0,
-    val isSelected:   Boolean = false
+    val durabilidad: Int,
+    val isSelected: Boolean = false
 ): Serializable
