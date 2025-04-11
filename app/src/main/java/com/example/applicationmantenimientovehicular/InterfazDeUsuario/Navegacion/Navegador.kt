@@ -14,6 +14,7 @@ import com.example.applicationmantenimientovehicular.ViewModel.AceiteMotViewMode
 import com.example.applicationmantenimientovehicular.InterfazDeUsuario.IngresoDeComponentes
 import com.example.applicationmantenimientovehicular.InterfazDeUsuario.EstadoDeVehiculo
 import com.example.applicationmantenimientovehicular.InterfazDeUsuario.DetallesDeComponentes
+import com.example.applicationmantenimientovehicular.ViewModel.KilometrajeViewModel
 import com.google.gson.Gson
 
 @Composable
@@ -26,7 +27,7 @@ fun Navegador(viewModelStoreOwner: ViewModelStoreOwner = LocalViewModelStoreOwne
     ) {
         // Pantalla Principal
         composable("pantallaPrincipal") {
-            val viewModel: AceiteMotViewModel = hiltViewModel(viewModelStoreOwner)
+            val viewModel: KilometrajeViewModel = hiltViewModel(viewModelStoreOwner)
             AreaDePruebas(navController = navController, viewModel)
         }
 

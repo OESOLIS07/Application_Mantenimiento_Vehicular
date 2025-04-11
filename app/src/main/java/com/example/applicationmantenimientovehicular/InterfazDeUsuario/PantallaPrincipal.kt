@@ -50,7 +50,9 @@ import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
 import com.example.applicationmantenimientovehicular.Modelo.AceiteMoto
+import com.example.applicationmantenimientovehicular.Modelo.Kilometraje
 import com.example.applicationmantenimientovehicular.ViewModel.AceiteMotViewModel
+import com.example.applicationmantenimientovehicular.ViewModel.KilometrajeViewModel
 import com.example.applicationmantenimientovehicular.ui.theme.ApplicationMantenimientoVehicularTheme
 import com.google.gson.Gson
 import kotlinx.coroutines.launch
@@ -62,7 +64,7 @@ import kotlin.math.abs
 @Composable
 fun AreaDePruebas(
     navController: NavController = rememberNavController(), // NavController para navegar
-    viewModel: AceiteMotViewModel = hiltViewModel()
+    viewModel: KilometrajeViewModel = hiltViewModel(),
 )
 {
     var kilometraje by remember { mutableStateOf("") } // Estado para el kilometraje
@@ -84,7 +86,14 @@ fun AreaDePruebas(
         Text("Seleccione una opción:")
         //Boton para guardar el kilometraje del vehiculo
         Button(
-            onClick = { },
+
+            onClick = {
+                if (kilometraje.isNotBlank()) {
+                    // Agrega el kilometraje a la base de datos
+                    val newKilometraje = Kilometraje(distancia = kilometraje.toInt())
+                    viewModel.insert(newKilometraje)
+                }
+            },
             modifier = Modifier
                 .padding(horizontal = 16.dp)
                 .fillMaxWidth()
