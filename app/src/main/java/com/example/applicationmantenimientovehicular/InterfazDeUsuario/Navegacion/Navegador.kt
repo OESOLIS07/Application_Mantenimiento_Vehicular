@@ -14,7 +14,10 @@ import com.example.applicationmantenimientovehicular.ViewModel.AceiteMotViewMode
 import com.example.applicationmantenimientovehicular.InterfazDeUsuario.IngresoDeComponentes
 import com.example.applicationmantenimientovehicular.InterfazDeUsuario.EstadoDeVehiculo
 import com.example.applicationmantenimientovehicular.InterfazDeUsuario.DetallesDeComponentes
+import com.example.applicationmantenimientovehicular.InterfazDeUsuario.EditarComponente
 import com.example.applicationmantenimientovehicular.ViewModel.KilometrajeViewModel
+import com.example.applicationmantenimientovehicular.InterfazDeUsuario.DetallesDeComponentes
+import com.example.applicationmantenimientovehicular.Modelo.AceiteMoto
 import com.google.gson.Gson
 
 @Composable
@@ -35,6 +38,29 @@ fun Navegador(viewModelStoreOwner: ViewModelStoreOwner = LocalViewModelStoreOwne
         composable("pantallaIngresoComponentes") {
             val viewModel: AceiteMotViewModel = hiltViewModel(viewModelStoreOwner)
             IngresoDeComponentes(navController = navController, viewModel)
+        }
+
+        // Pantalla Editar Componente
+        composable(
+            route = "pantallaEditarComponente/{aceiteMotoJson}",
+            arguments = listOf(
+                navArgument("aceiteMotoJson") {
+                    type = NavType.StringType
+                }
+            )
+        ) { backStackEntry ->
+            // Recuperamos el objeto AceiteMoto
+            val json = backStackEntry.arguments?.getString("aceiteMotoJson")
+            val aceiteMoto = Gson().fromJson(json, AceiteMoto::class.java)
+
+            val viewModel: AceiteMotViewModel = hiltViewModel(viewModelStoreOwner)
+            if (aceiteMoto != null) {
+                EditarComponente(
+                    aceiteMoto = aceiteMoto, // Pasamos el objeto Casa
+                    viewModel = viewModel,
+                    navController = navController
+                )
+            }
         }
 
         // Pantalla Estado del Vehiculo

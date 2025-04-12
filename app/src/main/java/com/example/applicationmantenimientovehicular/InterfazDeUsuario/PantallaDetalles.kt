@@ -120,7 +120,7 @@ fun DetallesDeComponentes(
                             onEditClick = {
                                 val json = Gson().toJson(aceiteMoto)
                                 val encodedJson = URLEncoder.encode(json, StandardCharsets.UTF_8.toString())
-                                //navController.navigate("editarAceiteMoto/$encodedJson")
+                                navController.navigate("pantallaEditarComponente/$encodedJson")
                             },
                             onCancelSwipe = { cancelSwipeAction = it }
                         )
