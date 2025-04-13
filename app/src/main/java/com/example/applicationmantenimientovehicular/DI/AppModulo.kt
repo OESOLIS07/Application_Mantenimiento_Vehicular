@@ -1,9 +1,9 @@
 package com.example.applicationmantenimientovehicular.DI
 
 import android.content.Context
-import com.example.applicationmantenimientovehicular.Datos.AceiteMotoRepository
+import com.example.applicationmantenimientovehicular.Datos.ComponenteRepository
 import com.example.applicationmantenimientovehicular.Datos.BaseDeDatos.AppBaseDeDatos
-import com.example.applicationmantenimientovehicular.Datos.BaseDeDatos.Interfaz.AceiteMotoDao
+import com.example.applicationmantenimientovehicular.Datos.BaseDeDatos.Interfaz.ComponenteDao
 import com.example.applicationmantenimientovehicular.Datos.BaseDeDatos.Interfaz.KilometrajeDao
 import com.example.applicationmantenimientovehicular.Datos.KilometrajeRepository
 import dagger.Module
@@ -25,8 +25,8 @@ object AppModulo
 
     @Provides
     @Singleton
-    fun provideAceiteMotoDao(appBaseDeDatos: AppBaseDeDatos): AceiteMotoDao {
-        return appBaseDeDatos.aceiteMotoDao()
+    fun provideAceiteMotoDao(appBaseDeDatos: AppBaseDeDatos): ComponenteDao {
+        return appBaseDeDatos.componenteDao()
     }
 
     @Provides
@@ -37,8 +37,8 @@ object AppModulo
 
     @Provides
     @Singleton
-    fun provideAceiteMotoRepository(aceiteMoto: AceiteMotoDao): AceiteMotoRepository {
-        return AceiteMotoRepository(aceiteMoto)
+    fun provideAceiteMotoRepository(aceiteMoto: ComponenteDao): ComponenteRepository {
+        return ComponenteRepository(aceiteMoto)
     }
 
     @Provides

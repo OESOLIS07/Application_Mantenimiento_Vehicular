@@ -16,8 +16,7 @@ import com.example.applicationmantenimientovehicular.InterfazDeUsuario.EstadoDeV
 import com.example.applicationmantenimientovehicular.InterfazDeUsuario.DetallesDeComponentes
 import com.example.applicationmantenimientovehicular.InterfazDeUsuario.EditarComponente
 import com.example.applicationmantenimientovehicular.ViewModel.KilometrajeViewModel
-import com.example.applicationmantenimientovehicular.InterfazDeUsuario.DetallesDeComponentes
-import com.example.applicationmantenimientovehicular.Modelo.AceiteMoto
+import com.example.applicationmantenimientovehicular.Modelo.Componente
 import com.google.gson.Gson
 
 @Composable
@@ -51,7 +50,7 @@ fun Navegador(viewModelStoreOwner: ViewModelStoreOwner = LocalViewModelStoreOwne
         ) { backStackEntry ->
             // Recuperamos el objeto AceiteMoto
             val json = backStackEntry.arguments?.getString("aceiteMotoJson")
-            val aceiteMoto = Gson().fromJson(json, AceiteMoto::class.java)
+            val aceiteMoto = Gson().fromJson(json, Componente::class.java)
 
             val viewModel: AceiteMotViewModel = hiltViewModel(viewModelStoreOwner)
             if (aceiteMoto != null) {

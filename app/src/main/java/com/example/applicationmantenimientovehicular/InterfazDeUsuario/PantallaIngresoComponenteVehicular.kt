@@ -16,8 +16,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
-import androidx.room.util.TableInfo
-import com.example.applicationmantenimientovehicular.Modelo.AceiteMoto
+import com.example.applicationmantenimientovehicular.Modelo.Componente
 import com.example.applicationmantenimientovehicular.ViewModel.AceiteMotViewModel
 
 @Composable
@@ -67,7 +66,7 @@ fun IngresoDeComponentes(
             onClick = {
                 if (marca.isNotBlank()) {
                     // Crear un nuevo Aceite y lo agrega a la base de datos
-                    val newAceite = AceiteMoto(nombre = marca, durabilidad = durabilidad.toInt())
+                    val newAceite = Componente(nombre = marca, durabilidad = durabilidad.toInt())
                     viewModel.insert(newAceite)
                     // Navegar a la Pantalla de Detalles
                     navController.navigate("pantallaDetalles")

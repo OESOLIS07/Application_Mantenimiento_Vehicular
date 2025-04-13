@@ -15,7 +15,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
-import com.example.applicationmantenimientovehicular.Modelo.AceiteMoto
+import com.example.applicationmantenimientovehicular.Modelo.Componente
 import com.example.applicationmantenimientovehicular.ViewModel.AceiteMotViewModel
 import androidx.compose.runtime.setValue
 import androidx.compose.runtime.getValue
@@ -23,7 +23,7 @@ import androidx.compose.material3.TextField
 
 @Composable
 fun EditarComponente(
-    aceiteMoto: AceiteMoto,
+    aceiteMoto: Componente,
     navController: NavController,
     viewModel: AceiteMotViewModel = hiltViewModel()
 )

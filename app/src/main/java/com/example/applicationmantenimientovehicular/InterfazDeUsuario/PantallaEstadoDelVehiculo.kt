@@ -24,5 +24,6 @@ fun EstadoDeVehiculo(
     )
     {
         Text("Pantalla Estado del Vehiculo")
+
     }
 }

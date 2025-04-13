@@ -20,8 +20,6 @@ import androidx.compose.material.icons.filled.Edit
 import androidx.compose.material.pullrefresh.PullRefreshIndicator
 import androidx.compose.material.pullrefresh.pullRefresh
 import androidx.compose.material.pullrefresh.rememberPullRefreshState
-import androidx.compose.material3.AlertDialog
-import androidx.compose.material3.Button
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.FloatingActionButton
@@ -29,7 +27,6 @@ import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
-import androidx.compose.material3.TextButton
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
@@ -46,7 +43,7 @@ import androidx.compose.ui.unit.IntOffset
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
-import com.example.applicationmantenimientovehicular.Modelo.AceiteMoto
+import com.example.applicationmantenimientovehicular.Modelo.Componente
 import com.example.applicationmantenimientovehicular.ViewModel.AceiteMotViewModel
 import com.google.gson.Gson
 import kotlinx.coroutines.launch
@@ -63,9 +60,9 @@ fun DetallesDeComponentes(
 )
 {
     // Observamos el LiveData usando observeAsState
-    val aceitesMoto by viewModel.allAceiteMoto.observeAsState(emptyList<AceiteMoto>())
+    val aceitesMoto by viewModel.allAceiteMoto.observeAsState(emptyList<Componente>())
 
-    var aceiteMotoToDelete by remember { mutableStateOf<AceiteMoto?>(null) }
+    var aceiteMotoToDelete by remember { mutableStateOf<Componente?>(null) }
     var cancelSwipeAction by remember { mutableStateOf<(() -> Unit)?>(null) }
     var isRefreshing by remember { mutableStateOf(false) }
 
@@ -140,7 +137,7 @@ fun DetallesDeComponentes(
 
 @Composable
 fun AceiteCard(
-    aceiteMoto: AceiteMoto,
+    aceiteMoto: Componente,
     onClick: () -> Unit,
     onSwipe: () -> Unit,
     onEditClick: () -> Unit,
