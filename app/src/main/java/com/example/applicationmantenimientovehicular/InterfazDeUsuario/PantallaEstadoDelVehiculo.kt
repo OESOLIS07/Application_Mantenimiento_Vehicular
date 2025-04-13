@@ -9,12 +9,12 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
-import com.example.applicationmantenimientovehicular.ViewModel.AceiteMotViewModel
+import com.example.applicationmantenimientovehicular.ViewModel.ComponenteViewModel
 
 @Composable
 fun EstadoDeVehiculo(
     navController: NavController,
-    viewModel: AceiteMotViewModel = hiltViewModel()
+    viewModel: ComponenteViewModel = hiltViewModel()
 )
 {
     Column (
@@ -24,6 +24,5 @@ fun EstadoDeVehiculo(
     )
     {
         Text("Pantalla Estado del Vehiculo")
-
     }
 }

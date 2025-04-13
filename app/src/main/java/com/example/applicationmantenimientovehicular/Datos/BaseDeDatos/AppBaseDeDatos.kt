@@ -9,7 +9,7 @@ import com.example.applicationmantenimientovehicular.Datos.BaseDeDatos.Interfaz.
 import com.example.applicationmantenimientovehicular.Modelo.Componente
 import com.example.applicationmantenimientovehicular.Modelo.Kilometraje
 
-@Database(entities = [Componente::class, Kilometraje::class], version = 2,exportSchema = false)
+@Database(entities = [Componente::class, Kilometraje::class], version = 3,exportSchema = false)
 abstract class AppBaseDeDatos: RoomDatabase()
 {
     abstract fun componenteDao(): ComponenteDao

@@ -10,26 +10,26 @@ import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
-class AceiteMotViewModel @Inject constructor(
+class ComponenteViewModel @Inject constructor(
     private val repository: ComponenteRepository
 ) : ViewModel()
 {
-    val allAceiteMoto: LiveData<List<Componente>> get() = repository.getAllAceiteMoto()
+    val allComponente: LiveData<List<Componente>> get() = repository.getAllComponente()
 
-    fun insert(aceiteMoto: Componente) = viewModelScope.launch {
-        repository.insert(aceiteMoto)
+    fun insert(componente: Componente) = viewModelScope.launch {
+        repository.insert(componente)
     }
 
-    fun update(aceiteMoto: Componente) = viewModelScope.launch {
-        repository.update(aceiteMoto)
+    fun update(componente: Componente) = viewModelScope.launch {
+        repository.update(componente)
     }
-    fun deleteAceiteMoto(aceiteMoto: Componente) {
+    fun deleteComponente(componente: Componente) {
         viewModelScope.launch {
-            repository.delete(aceiteMoto)
+            repository.delete(componente)
         }
     }
 
-    fun deleteAllAceiteMoto() = viewModelScope.launch {
-        repository.deleteAllAceiteMoto()
+    fun deleteAllComponente() = viewModelScope.launch {
+        repository.deleteAllComponente()
     }
 }

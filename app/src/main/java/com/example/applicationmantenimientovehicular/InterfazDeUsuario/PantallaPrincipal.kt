@@ -25,12 +25,12 @@ import com.example.applicationmantenimientovehicular.ui.theme.ApplicationManteni
 
 @OptIn(ExperimentalMaterialApi::class)
 @Composable
-fun AreaDePruebas(
+fun PantallaPricipal(
     navController: NavController = rememberNavController(), // NavController para navegar
     viewModel: KilometrajeViewModel = hiltViewModel(),
 )
 {
-    var kilometraje by remember { mutableStateOf("") } // Estado para el kilometraje
+    var kilometrajeActual by remember { mutableStateOf("") } // Estado para el kilometraje Actual
 
     Column (
         modifier = Modifier
@@ -40,29 +40,29 @@ fun AreaDePruebas(
     {
         Text("Pantalla Principal")
 
-        // Campo de texto para el kilometraje del vehiculo
+        // Campo de texto para el kilometraje actual del vehiculo
         OutlinedTextField(
-            value = kilometraje,
-            onValueChange = { kilometraje = it },
+            value = kilometrajeActual,
+            onValueChange = { kilometrajeActual = it },
             label = { Text("Ingrese el Kilometraje actual") },
             modifier = Modifier.fillMaxWidth()
         )
         Text("Seleccione una opción:")
-        //Boton para guardar el kilometraje del vehiculo
+        //Boton para guardar el kilometraje actual del vehiculo
         Button(
 
             onClick = {
-                if (kilometraje.isNotBlank()) {
+                if (kilometrajeActual.isNotBlank()) {
                     // Agrega el kilometraje a la base de datos
-                    val newKilometraje = Kilometraje(distancia = kilometraje.toInt())
-                    viewModel.insert(newKilometraje)
+                    val nuevoKilometraje = Kilometraje(distancia = kilometrajeActual.toInt())
+                    viewModel.insert(nuevoKilometraje)
                 }
             },
             modifier = Modifier
                 .padding(horizontal = 16.dp)
                 .fillMaxWidth()
         ) {
-            Text("Guardar Kilometraje ")
+            Text("Guardar Kilometraje Actual")
         }
         // Boton para revisar el estado del vehiculo
         Button(
@@ -97,6 +97,6 @@ fun AreaDePruebas(
 @Composable
 fun VistaPreviaDeListaDeTareasEnPantalla() {
     ApplicationMantenimientoVehicularTheme{
-        AreaDePruebas() // Previsualización de la pantalla
+        PantallaPricipal() // Previsualización de la pantalla
     }
 }

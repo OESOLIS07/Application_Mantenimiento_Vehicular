@@ -25,8 +25,14 @@ object AppModulo
 
     @Provides
     @Singleton
-    fun provideAceiteMotoDao(appBaseDeDatos: AppBaseDeDatos): ComponenteDao {
+    fun provideComponenteDao(appBaseDeDatos: AppBaseDeDatos): ComponenteDao {
         return appBaseDeDatos.componenteDao()
+    }
+
+    @Provides
+    @Singleton
+    fun provideComponenteRepository(componenteDao: ComponenteDao): ComponenteRepository {
+        return ComponenteRepository(componenteDao)
     }
 
     @Provides
@@ -35,15 +41,10 @@ object AppModulo
         return appBaseDeDatos.kilometrajeDao()
     }
 
-    @Provides
-    @Singleton
-    fun provideAceiteMotoRepository(aceiteMoto: ComponenteDao): ComponenteRepository {
-        return ComponenteRepository(aceiteMoto)
-    }
 
     @Provides
     @Singleton
-    fun provideKilometrajeRepository(kilometraje: KilometrajeDao): KilometrajeRepository {
-        return KilometrajeRepository (kilometraje)
+    fun provideKilometrajeRepository(kilometrajeDao: KilometrajeDao): KilometrajeRepository {
+        return KilometrajeRepository (kilometrajeDao)
     }
 }

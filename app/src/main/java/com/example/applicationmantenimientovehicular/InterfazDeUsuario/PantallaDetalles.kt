@@ -44,7 +44,7 @@ import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
 import com.example.applicationmantenimientovehicular.Modelo.Componente
-import com.example.applicationmantenimientovehicular.ViewModel.AceiteMotViewModel
+import com.example.applicationmantenimientovehicular.ViewModel.ComponenteViewModel
 import com.google.gson.Gson
 import kotlinx.coroutines.launch
 import java.net.URLEncoder
@@ -56,13 +56,13 @@ import androidx.compose.foundation.lazy.items
 @Composable
 fun DetallesDeComponentes(
     navController: NavController,
-    viewModel: AceiteMotViewModel = hiltViewModel()
+    viewModel: ComponenteViewModel = hiltViewModel()
 )
 {
     // Observamos el LiveData usando observeAsState
-    val aceitesMoto by viewModel.allAceiteMoto.observeAsState(emptyList<Componente>())
+    val componente by viewModel.allComponente.observeAsState(emptyList<Componente>())
 
-    var aceiteMotoToDelete by remember { mutableStateOf<Componente?>(null) }
+    var componenteToDelete by remember { mutableStateOf<Componente?>(null) }
     var cancelSwipeAction by remember { mutableStateOf<(() -> Unit)?>(null) }
     var isRefreshing by remember { mutableStateOf(false) }
 
@@ -86,7 +86,7 @@ fun DetallesDeComponentes(
             ) {
                 Icon(
                     imageVector = Icons.Default.Add, // Ícono de "agregar"
-                    contentDescription = "Agregar Tarea"
+                    contentDescription = "Listo"
                 )
             }
         }
@@ -106,16 +106,16 @@ fun DetallesDeComponentes(
                     modifier = Modifier.fillMaxSize(),
                     contentPadding = PaddingValues(16.dp)
                 ) {
-                    items(aceitesMoto) { aceiteMoto ->
-                        AceiteCard(
-                            aceiteMoto = aceiteMoto,
-                            onClick = { viewModel.update(aceiteMoto.copy(isSelected = !aceiteMoto.isSelected))},
+                    items(componente) { componente ->
+                        ComponenteCard(
+                            componente = componente,
+                            onClick = { viewModel.update(componente.copy(isSelected = !componente.isSelected))},
                             onSwipe = {
-                                aceiteMotoToDelete = aceiteMoto
+                                componenteToDelete = componente
                                 cancelSwipeAction = null
                             },
                             onEditClick = {
-                                val json = Gson().toJson(aceiteMoto)
+                                val json = Gson().toJson(componente)
                                 val encodedJson = URLEncoder.encode(json, StandardCharsets.UTF_8.toString())
                                 navController.navigate("pantallaEditarComponente/$encodedJson")
                             },
@@ -136,8 +136,8 @@ fun DetallesDeComponentes(
 }
 
 @Composable
-fun AceiteCard(
-    aceiteMoto: Componente,
+fun ComponenteCard(
+    componente: Componente,
     onClick: () -> Unit,
     onSwipe: () -> Unit,
     onEditClick: () -> Unit,
@@ -179,7 +179,7 @@ fun AceiteCard(
             .clickable { onClick() },
         elevation = CardDefaults.cardElevation(defaultElevation = 2.dp),
         colors = CardDefaults.cardColors(
-            containerColor = if (aceiteMoto.isSelected) Color.Red else Color.White
+            containerColor = if (componente.isSelected) Color.Red else Color.White
         ),
         border = CardDefaults.outlinedCardBorder()
     ) {
@@ -190,12 +190,17 @@ fun AceiteCard(
             verticalAlignment = Alignment.CenterVertically
         ) {
             Text(
-                text = aceiteMoto.nombre,
+                text = componente.nombre,
                 modifier = Modifier.weight(1f)
             )
-            Text("Durabilidad:  ")
+            Text("Durabilidad: ")
             Text(
-                text = aceiteMoto.durabilidad.toString(),
+                text = componente.durabilidad.toString(),
+                modifier = Modifier.weight(1f)
+            )
+            Text("Kilometraje de Inicio: ")
+            Text(
+                text = componente.kilometrajeComponente.toString(),
                 modifier = Modifier.weight(1f)
             )
             Icon(
@@ -208,7 +213,7 @@ fun AceiteCard(
 
         }
     }
-    LaunchedEffect(key1 = aceiteMoto) {
+    LaunchedEffect(key1 = componente) {
         onCancelSwipe {
             scope.launch { offsetX.animateTo(0f, tween(300)) }
         }

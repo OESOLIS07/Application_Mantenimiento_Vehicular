@@ -10,6 +10,6 @@ data class Componente(
     val id: Long = 0,
     val nombre: String = "",
     val durabilidad: Int,
-    val kilometrajeComponent: Int,
+    val kilometrajeComponente: Int,
     val isSelected: Boolean = false
 ): Serializable

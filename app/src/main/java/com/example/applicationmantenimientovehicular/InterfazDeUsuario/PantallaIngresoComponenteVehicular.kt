@@ -17,16 +17,17 @@ import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
 import com.example.applicationmantenimientovehicular.Modelo.Componente
-import com.example.applicationmantenimientovehicular.ViewModel.AceiteMotViewModel
+import com.example.applicationmantenimientovehicular.ViewModel.ComponenteViewModel
 
 @Composable
 fun IngresoDeComponentes(
     navController: NavController,
-    viewModel: AceiteMotViewModel = hiltViewModel()
+    viewModel: ComponenteViewModel = hiltViewModel()
 )
 {
-    var marca by remember { mutableStateOf("") } // Estado para la Marca del Producto
-    var durabilidad by remember { mutableStateOf("") } // Estado para la Durabilidad del Producto
+    var nombre by remember { mutableStateOf("") } // Estado para el Nombre del Componente
+    var durabilidad by remember { mutableStateOf("") } // Estado para la Durabilidad del Componente
+    var kilometrajeComponente by remember { mutableStateOf("") } // Estado para el Kilometraje del Componente
     var textFieldVisible by remember { mutableStateOf(false) }
     Column (
         modifier = Modifier
@@ -44,30 +45,35 @@ fun IngresoDeComponentes(
                 .padding(horizontal = 16.dp)
                 .fillMaxWidth()
         ) {
-            Text("Aceite")
-            //Text(if (textFieldEnabled) "Desactivar TextField" else "Activar TextField")
+            Text("Ingreso de Componente")
         }
         if (textFieldVisible) {
             OutlinedTextField(
-                value = marca,
-                onValueChange = { marca= it },
-                label = { Text("Ingrese la Marca del Producto") },
+                value = nombre,
+                onValueChange = { nombre= it },
+                label = { Text("Ingrese el Nombre del Componente") },
                 modifier = Modifier.fillMaxWidth()
             )
             OutlinedTextField(
                 value = durabilidad,
                 onValueChange = { durabilidad= it },
-                label = { Text("Ingrese la Durabilidad del Producto") },
+                label = { Text("Ingrese la Durabilidad del Componente") },
+                modifier = Modifier.fillMaxWidth()
+            )
+            OutlinedTextField(
+                value = kilometrajeComponente,
+                onValueChange = { kilometrajeComponente= it },
+                label = { Text("Ingrese el Kilometraje actual") },
                 modifier = Modifier.fillMaxWidth()
             )
         }
         //Boton para Guardar el nuevo Componente
         Button(
             onClick = {
-                if (marca.isNotBlank()) {
-                    // Crear un nuevo Aceite y lo agrega a la base de datos
-                    val newAceite = Componente(nombre = marca, durabilidad = durabilidad.toInt())
-                    viewModel.insert(newAceite)
+                if (nombre.isNotBlank()) {
+                    // Crear un nuevo Componente y lo agrega a la Base de Datos
+                    val nuevoComponente = Componente(nombre = nombre, durabilidad = durabilidad.toInt(), kilometrajeComponente = kilometrajeComponente.toInt())
+                    viewModel.insert(nuevoComponente)
                     // Navegar a la Pantalla de Detalles
                     navController.navigate("pantallaDetalles")
                 }
@@ -76,7 +82,7 @@ fun IngresoDeComponentes(
                 .padding(horizontal = 16.dp)
                 .fillMaxWidth()
         ) {
-            Text("Guardar")
+            Text("Guardar Componente")
         }
     }
 }
